@@ -1,12 +1,9 @@
-from dotenv import load_dotenv
+import streamlit as st
 from openai import OpenAI
 
-load_dotenv()
-
-client = OpenAI()
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 
-# Whisper model
 def transcribe_audio(audio_file):
     with open(audio_file, "rb") as audio:
         transcript = client.audio.transcriptions.create(
